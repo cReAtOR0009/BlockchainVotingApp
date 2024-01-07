@@ -1,0 +1,42 @@
+* {
+  /* border: 1px solid red; */
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  color: white;
+}
+
+html {
+  min-height: 100%;
+  background: hsla(0, 100%, 53%, 1);
+
+  background: linear-gradient(
+    135deg,
+    rgb(7, 7, 7) 0%,
+    rgb(0, 0, 0) 32%,
+    rgb(0, 0, 0) 76%,
+    rgb(27, 27, 27) 100%
+  );
+
+  /* background: -moz-linear-gradient(
+    135deg,
+    hsla(0, 100%, 53%, 1) 0%,
+    hsla(257, 92%, 60%, 1) 32%,
+    hsla(163, 61%, 42%, 1) 76%,
+    hsla(33, 94%, 57%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    135deg,
+    hsla(0, 100%, 53%, 1) 0%,
+    hsla(257, 92%, 60%, 1) 32%,
+    hsla(163, 61%, 42%, 1) 76%,
+    hsla(33, 94%, 57%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF0F0F", endColorstr="#703BF7", GradientType=1 ); */
+  background-size: cover;
+}
+body {
+  font-family: Urbanist;
+}

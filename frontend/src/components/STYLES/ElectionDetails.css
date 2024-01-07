@@ -1,0 +1,67 @@
+/* ElectionDetails.css */
+
+.election-details-container {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* color: #007bff; */
+  }
+  
+  h2, h3 {
+    color: #333;
+    text-decoration: underline;
+  }
+  
+  p {
+    margin-bottom: 10px;
+    /* color: #703BF7; */
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  strong {
+    /* color: #007bff; */
+  }
+
+  .election{
+
+  }
+  .contestantsList {
+    display: flex;
+  }
+
+  .election-details-container ul li{
+    /* color: #333; */
+  }
+
+  .submitVote {
+    padding: 10px 20px;
+    background-color: #703BF7;
+    border: 1px solid grey;
+    border-radius: 10px;
+  }
+  .ongoingElecton{
+    /* color: #007bff; */
+    font-weight: 700;
+  }
+
+  .ongoingElectionCard {
+    background-color: #29AB87;
+  }
+
+  .completedElectionCard {
+    background-color: red;
+  }
+  /* Add more styles as needed */
+  

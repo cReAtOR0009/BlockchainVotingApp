@@ -1,0 +1,67 @@
+/* Styles for larger screens */
+.election-card {
+    border: 1px solid #ddd;
+    background-color: #703BF7;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+}
+.election-card:hover {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transform: scale(1.02);
+  }
+  .election-card p{
+    color: white;
+  }
+  
+  /* Styles for contest details */
+  .election-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .election-card li {
+    margin-bottom: 8px;
+  }
+  
+  /* Additional styling for ElectionList */
+  .election-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    /* border-radius: 10px; */
+    border: 1px solid var(--greyShade1);
+  }
+
+  .learMore{
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(41, 39, 39);
+    display: inline;
+  }
+
+  a{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+
+  /*  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .election-card:hover {
+    transform: scale(1.02); */
