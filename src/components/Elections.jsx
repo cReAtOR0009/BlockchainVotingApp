@@ -52,7 +52,7 @@ const ElectionCard = ({ election }) => {
 
 export default function ElectionList() {
   return (
-    <div className="election-list">
+    <div className="containers election-list">
       {elections.map((election, index) => (
         <ElectionCard key={index} election={election} />
       ))}

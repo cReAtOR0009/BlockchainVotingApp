@@ -11,7 +11,7 @@ export const Nav = () => {
   return (
     <div>
       {
-        <div className="navigation">
+        <div className="containers navigation">
           <div className="logo">
             <Link to="/">
               <img src={logo} alt="logo" />
