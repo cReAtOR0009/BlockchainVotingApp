@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../STYLES/createElection.css";
+import "./STYLES/createElection.css";
 
 const CreateElectionForm = () => {
   const [electionData, setElectionData] = useState({
