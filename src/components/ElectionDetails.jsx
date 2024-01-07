@@ -2,7 +2,7 @@
 
 import {useState} from 'react';
 import { useParams } from 'react-router-dom';
-import './STYLES/ElectionDetails.css'; // Import the CSS file
+import './STYLES/electionDetails.css'; // Import the CSS file
 
 // Import your list of election objects
 import { elections } from '../assets/textAsset'; // Update the path accordingly
