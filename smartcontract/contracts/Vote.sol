@@ -1,34 +1,83 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+// SPDX-License-Identifier: MIT
 
-// Uncomment this line to use console.log
-// import "hardhat/console.sol";
+pragma solidity ^0.8.7;
 
-contract Lock {
-    uint public unlockTime;
-    address payable public owner;
+contract Election {
+    constructor() {}
 
-    event Withdrawal(uint amount, uint when);
-
-    constructor(uint _unlockTime) payable {
-        require(
-            block.timestamp < _unlockTime,
-            "Unlock time should be in the future"
-        );
-
-        unlockTime = _unlockTime;
-        owner = payable(msg.sender);
+    struct contestantStruct {
+        string name;
+        uint256 id;
+        uint256 votes;
     }
 
-    function withdraw() public {
-        // Uncomment this line, and the import of "hardhat/console.sol", to print a log in your terminal
-        // console.log("Unlock time is %o and block timestamp is %o", unlockTime, block.timestamp);
+    struct electionStruct {
+        address electionCreator;
+        string electionTitle;
+        uint256 electionStartDate;
+        uint256 electionDuration;
+        uint256 electionEndDate;
+        string electionStatus;
+        contestantStruct[] electionContestants;
+    }
+    electionStruct[] elections;
 
-        require(block.timestamp >= unlockTime, "You can't withdraw yet");
-        require(msg.sender == owner, "You aren't the owner");
+    event electionCreated(
+        address electionCreator,
+        string title,
+        uint256 startDate,
+        uint256 duration,
+        uint256 electionEndDate,
+        string status,
+        contestantStruct[] contestants
+    );
 
-        emit Withdrawal(address(this).balance, block.timestamp);
+    function createElection(
+        string memory title,
+        uint256 duration,
+        contestantStruct[] memory contestants
+    ) public {
+        uint256 convertedBlockTime;
+        string memory electionStatus;
+        uint256 electionEndDate;
+        uint256 electionDuration;
 
-        owner.transfer(address(this).balance);
+        convertedBlockTime = convertToMilli(block.timestamp);
+        if ((duration - convertedBlockTime) >= (900 * 1000)) {
+            //duration comming from backend must be milliseconds
+            electionDuration = (duration - convertedBlockTime);
+            electionStatus = "pending";
+        } else {
+            return;
+        }
+
+        elections.push(
+            electionStruct(
+                msg.sender,
+                title,
+                convertedBlockTime,
+                electionDuration,
+                electionEndDate,
+                electionStatus,
+                contestants
+            )
+        );
+        emit electionCreated(
+            msg.sender,
+            title,
+            block.timestamp,
+            electionDuration,
+            electionEndDate,
+            electionStatus,
+            contestants
+        );
+    }
+
+    function vote(address electionId, contestantStruct memory voterChoice)  public  {
+        
+    }
+
+    function convertToMilli(uint256 timestamp) internal pure returns (uint256) {
+        return (timestamp * 1000);
     }
 }
