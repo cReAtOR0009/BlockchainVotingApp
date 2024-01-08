@@ -73,8 +73,14 @@ contract Election {
         );
     }
 
-    function vote(address electionId, contestantStruct memory voterChoice)  public  {
-        
+    function vote(address electionId, uint256 contestantId)  public  {
+
+       electionStruct storage currentElection = elections[electionId];
+    
+    require(contestantId < currentElection.electionContestants.length, "Invalid contestant index");
+
+    currentElection.electionContestants[contestantId].votes += 1;
+
     }
 
     function convertToMilli(uint256 timestamp) internal pure returns (uint256) {
