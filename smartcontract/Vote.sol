@@ -7,26 +7,32 @@ pragma solidity ^0.8.7;
 contract Election {
     constructor() {}
 
-    struct contestantStruct {
+    struct contestant {
         string name;
         uint256 id;
         uint256 votes;
     }
-
-    struct electionStruct {
+     enum Electionstatus {
+        Pending,
+        ongoing,
+        completed
+    }
+    struct Electioninfo {
         uint256 id;
         address electionCreator;
         string electionTitle;
         uint256 electionStartDate;
         uint256 electionDuration;
         uint256 electionEndDate;
-        string electionStatus;
+        Electionstatus electionStatus;
     }
+
+    
 
     uint256 electionCounter;
 
-    mapping(uint256 => contestantStruct[]) electionContestants;
-    electionStruct[] elections;
+    mapping(uint256 => contestant[]) electionContestants;
+    Electioninfo[] elections;
 
     event electionCreated(
         uint256 id,
@@ -35,34 +41,36 @@ contract Election {
         uint256 startDate,
         uint256 duration,
         uint256 electionEndDate,
-        string status,
-        contestantStruct[] contestants
+        Electionstatus status,
+        contestant[] contestants
     );
 
     function createElection(
         string memory title,
         uint256 duration,
-        // contestantStruct[] memory contestants,
         string[] memory names,
         uint256[] memory ids,
         uint256[] memory votes
     ) public {
 
-         require(duration >= 900000, "Election duration must be at least 900 seconds");
+        require(duration >= 900, "Election duration must be at least 900 seconds-(15minutes)");
         require(names.length == ids.length && ids.length == votes.length, "Invalid contestant data");
 
         uint256 electionStartDate = block.timestamp;
         uint256 electionEndDate = electionStartDate + duration;
-        string memory electionStatus = "pending";
+        Electionstatus electionStatus = Electionstatus.ongoing;
+        // Electionstatus  status ;
+        // string memory electionStatus = status.ongoing;
+
         for (uint i = 0; i < names.length; i++) {
             electionContestants[electionCounter].push(
-                contestantStruct(names[i], ids[i], votes[i])
+                contestant(names[i], ids[i], votes[i])
             );
         }
      
 
         elections.push(
-            electionStruct(
+            Electioninfo(
                 electionCounter,
                 msg.sender,
                 title,
@@ -87,9 +95,14 @@ contract Election {
     electionCounter += 1;
     }
 
+    function getElections(uint256 index) public view  returns (Electioninfo memory) {
+         require(index < elections.length, "Invalid election index");
+        return elections[index];
+    }
+
     // function vote(address electionId, uint256 contestantId)  public  {
 
-    //    electionStruct storage currentElection = elections[electionId];
+    //    Electioninfo storage currentElection = elections[electionId];
 
     // require(contestantId < currentElection.electionContestants.length, "Invalid contestant index");
 
