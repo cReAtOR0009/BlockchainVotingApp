@@ -33,7 +33,7 @@ import { elections } from '../assets/textAsset'; // Update the path accordingly
       <form>
         <h3>Contestants:</h3>
         <ul className='contestantsList'>
-          {election.contestants.map((contestant) => (
+          {election.contestants.map((contestant, index) => (
             <li key={contestant.id}>
               <label>
                 <input
